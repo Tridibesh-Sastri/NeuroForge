@@ -76,58 +76,118 @@ Context switching tolerance:
 
 ### 1.2 Ongoing Task Inputs
 
-#### **Task Creation Form**
+#### **Enhanced Task Creation Form (AI-Clustering Ready)**
 ```
 Task Details:
 - Title: [text input]
-- Description: [textarea]
+- Description: [textarea with AI analysis]
 - Estimated duration: [15min/30min/1hr/2hr/4hr/custom]
-- Deadline: [date picker]
-- Priority: [High/Medium/Low]
+- Deadline: [date picker with urgency calculation]
+- Priority: [High/Medium/Low with AI suggestion]
 
-Task Classification:
+Cognitive Classification (AI-Powered):
 - Intent tag: [Deep Work/Creative/Learning/Administrative/Social]
-- Energy required: [High/Medium/Low]
-- Focus level needed: [Deep/Moderate/Light]
-- Preferred time: [Morning/Afternoon/Evening/Flexible]
+  └── AI confidence: [85%] [✓ Correct] [✗ Wrong - retrain]
+- Cognitive type: [Analytical/Creative/Routine/Mixed]
+  └── Auto-detected from description
+- Mental state required: [Deep thinking/Social/Neutral/Flow state]
+- Energy level: [High focus/Medium/Low/Variable]
 
-Context Information:
-- Tools needed: [dropdown: VS Code, Figma, Browser, etc.]
-- Location: [Office/Home/Anywhere]
-- Collaboration: [Solo/Team/Client involved]
+Context & Clustering Information:
+- Primary tools: [Multi-select: VS Code, Figma, Browser, Slack, etc.]
+- Secondary tools: [Auto-suggested based on task type]
+- Work environment: [Quiet space/Office/Home/Anywhere/Social space]
+- Collaboration type: [Solo/Pair work/Team meeting/Client facing]
 - Interruption tolerance: [None/Low/Medium/High]
+- Similar tasks: [AI shows: "Like 'API refactoring' from last week"]
+
+Scheduling Preferences:
+- Preferred energy time: [Peak/Medium/Low/Flexible]
+- Can be batched with: [AI suggestions based on similarity]
+- Minimum block size: [30min/1hr/2hr/Must be continuous]
+- Maximum delay tolerance: [Same day/Within 2 days/Within week/Flexible]
 ```
 
-#### **Quick Task Entry (Voice/Text)**
+#### **AI-Powered Quick Task Entry**
 ```
-Voice: "Add deep work task: refactor user authentication, 2 hours, high priority"
-Text: "Meeting with client about redesign, 1 hour, tomorrow afternoon"
-Slash command: "/task Design landing page mockups @creative 3hrs #high"
+Voice Input Examples:
+"Add deep work task: refactor user authentication, 2 hours, high priority, needs VS Code and database access"
+→ AI detects: Analytical cluster, High energy, Tools: [VS Code, Database], Solo work
+
+"Schedule brainstorming session for new feature ideas, 90 minutes, with design team"
+→ AI detects: Creative cluster, Social energy, Tools: [Whiteboard, Figma], Team collaboration
+
+Text Input with AI Enhancement:
+"Fix the login bug" 
+→ AI suggests: Intent: Deep Work, Type: Analytical, Energy: High, Tools: [VS Code, Browser], Duration: 1-2 hours
+
+Slash Commands with Clustering:
+"/task Debug payment integration @analytical 2hrs #urgent +vscode +postman"
+"/task Write blog post about AI trends @creative 3hrs #medium +notion +research"
+"/task Team standup @social 30min #daily +slack +calendar"
 ```
 
 ### 1.3 Feedback & Learning Inputs
 
-#### **Session Completion Feedback**
+#### **Enhanced Session Completion Feedback (Energy-Aware)**
 ```
 After each work session:
-- How focused were you? [1-10 scale]
-- Energy level at start? [1-10 scale]  
-- Energy level at end? [1-10 scale]
-- Interruptions: [None/Few/Many]
-- Task completed: [Yes/Partially/No]
-- Satisfaction: [1-10 scale]
+- Focus quality: [1-10 scale with context]
+  └── "How deep was your focus during this analytical task?"
+- Energy at start: [1-10 scale] 
+- Energy at end: [1-10 scale]
+- Energy type match: "Did this creative task feel right for your 2 PM energy?"
+- Clustering effectiveness: "How well did batching these admin tasks work?"
+- Tool switching overhead: "How much time lost switching between tools?"
+- Interruptions: [None/Few/Many] with context tracking
+- Task completion: [Completed/75%/50%/25%/Barely started]
+- Time accuracy: [Took less time/Right amount/More time needed]
+- Would batch again: [Yes/No/With modifications]
 
-Quick feedback buttons:
-[😊 Great session] [😐 Okay session] [😞 Poor session]
+Advanced Feedback:
+- Cognitive load: "Did this task feel harder/easier than expected?"
+- Flow state achieved: "Were you 'in the zone' during this session?"
+- Context switching fatigue: "How drained did you feel switching to this task?"
+- Optimal rescheduling: "Would a different time work better for this type of task?"
+
+Quick Feedback Buttons:
+[🎯 Perfect match] [⚡ High energy] [🧠 Deep focus] [😊 Great flow]
+[😐 Okay session] [😞 Poor timing] [🔄 Wrong cluster] [⏰ Bad schedule]
 ```
 
-#### **Weekly Review Questions**
+#### **Enhanced Weekly Review Questions (Pattern Learning)**
 ```
-- Which time blocks worked best this week?
-- When did you feel most productive?
-- What caused the most disruptions?
-- Any patterns you noticed?
-- Suggested improvements for next week?
+Clustering & Batching Review:
+- Which task clusters worked best this week?
+  □ Analytical tasks together (coding, debugging, analysis)
+  □ Creative tasks together (design, writing, brainstorming)
+  □ Administrative tasks together (email, planning, reviews)
+  □ Social tasks together (meetings, calls, collaboration)
+
+Energy Pattern Insights:
+- When did you feel most productive for different task types?
+  □ Deep work: [Morning/Afternoon/Evening]
+  □ Creative work: [Morning/Afternoon/Evening]  
+  □ Social interactions: [Morning/Afternoon/Evening]
+  □ Administrative tasks: [Morning/Afternoon/Evening]
+
+Auto-Replanning Feedback:
+- How well did AI handle schedule disruptions this week?
+  □ Excellent - suggestions were perfect
+  □ Good - mostly helpful with minor tweaks needed
+  □ Fair - needed significant manual adjustments
+  □ Poor - had to manually replan everything
+
+Tool & Context Switching:
+- Which tool combinations created the most friction?
+- What environmental factors improved/hurt your focus?
+- Were there any unexpected task similarities AI missed?
+
+Pattern Recognition Questions:
+- Any new patterns you noticed about your productivity?
+- Tasks that consistently take longer/shorter than estimated?
+- Times when energy predictions were wrong?
+- Suggestions for improving AI clustering accuracy?
 ```
 
 ---
@@ -223,33 +283,47 @@ function TaskInputForm({ suggestedContext }) {
 
 ## 3. Open-Source AI Implementation
 
-### 3.1 Open-Source LLM Options
+### 3.1 Open-Source AI Stack for Task Clustering
 
-#### **Primary Options**
+#### **Multi-Model Approach**
 ```javascript
-const openSourceModels = {
-  // For task classification and planning
-  ollama: {
-    models: ['llama3', 'mistral', 'codellama'],
-    use_case: 'Local processing, privacy-first',
-    cost: 'Free (self-hosted)',
-    performance: 'Good for classification tasks'
-  },
-  
-  // For advanced reasoning
-  huggingface: {
-    models: ['microsoft/DialoGPT', 'facebook/blenderbot'],
-    use_case: 'API-based processing',
-    cost: 'Pay per API call',
-    performance: 'Excellent for complex tasks'
-  },
-  
-  // For embeddings and similarity
-  sentenceTransformers: {
-    models: ['all-MiniLM-L6-v2', 'all-mpnet-base-v2'],
-    use_case: 'Task similarity, clustering',
+const aiClusteringStack = {
+  // Task Classification & Clustering
+  textAnalysis: {
+    model: 'sentence-transformers/all-MiniLM-L6-v2',
+    purpose: 'Generate task embeddings for similarity clustering',
     cost: 'Free',
-    performance: 'Excellent for semantic understanding'
+    processing: 'Local or cloud'
+  },
+  
+  intentClassification: {
+    model: 'ollama/llama3-8b',
+    purpose: 'Classify tasks into intent categories',
+    cost: 'Free (self-hosted)',
+    processing: 'Local'
+  },
+  
+  cognitiveAnalysis: {
+    model: 'huggingface/distilbert-base-uncased',
+    purpose: 'Analyze cognitive load and energy requirements',
+    cost: 'Free/Low cost API',
+    processing: 'Cloud with local fallback'
+  },
+  
+  // Pattern Learning
+  userPatternLearning: {
+    model: 'scikit-learn RandomForest + XGBoost',
+    purpose: 'Learn user energy patterns and preferences',
+    cost: 'Free',
+    processing: 'Local'
+  },
+  
+  // Auto-Replanning
+  schedulingOptimization: {
+    model: 'Custom constraint solver + ML predictions',
+    purpose: 'Optimize schedule disruption handling',
+    cost: 'Free',
+    processing: 'Local'
   }
 };
 ```
@@ -271,57 +345,187 @@ const cloudAI = {
 };
 ```
 
-### 3.2 Task Classification System
+### 3.2 AI-Powered Task Clustering Implementation
 
-#### **Using Sentence Transformers for Task Similarity**
+#### **Multi-Dimensional Clustering System**
 ```python
-# Task clustering using open-source embeddings
 from sentence_transformers import SentenceTransformer
+from sklearn.cluster import DBSCAN, KMeans
 import numpy as np
-from sklearn.cluster import KMeans
 
-class TaskClassifier:
+class AdvancedTaskClusterer:
     def __init__(self):
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.semantic_model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.intent_classifier = self.load_intent_model()
         
-    def classify_task(self, task_description, user_history):
-        # Get embedding for new task
-        task_embedding = self.model.encode([task_description])
+    def analyze_task(self, task_description, context=None):
+        """Multi-dimensional task analysis"""
+        return {
+            # Semantic similarity
+            'embedding': self.semantic_model.encode([task_description]),
+            
+            # Cognitive classification
+            'cognitive_type': self.classify_cognitive_type(task_description),
+            'energy_requirement': self.predict_energy_need(task_description),
+            'focus_depth': self.analyze_focus_requirements(task_description),
+            
+            # Tool & context analysis
+            'tools_needed': self.extract_tools(task_description, context),
+            'work_environment': self.predict_environment(task_description),
+            'collaboration_type': self.analyze_collaboration(task_description),
+            
+            # Intent classification
+            'intent_category': self.classify_intent(task_description),
+            'mental_state': self.predict_mental_state(task_description)
+        }
+    
+    def create_clusters(self, tasks, user_preferences):
+        """Create intelligent task clusters"""
+        analyzed_tasks = [self.analyze_task(task['description'], task.get('context')) for task in tasks]
         
-        # Compare with historical tasks
-        if user_history:
-            history_embeddings = self.model.encode(user_history)
-            similarities = cosine_similarity(task_embedding, history_embeddings)
-            
-            # Find most similar past tasks
-            most_similar = np.argsort(similarities[0])[-3:]
-            
-            return {
-                'suggested_intent': self.infer_intent(most_similar),
-                'estimated_duration': self.estimate_duration(most_similar),
-                'energy_level': self.predict_energy_need(most_similar)
-            }
+        # Multi-dimensional clustering
+        clusters = {
+            'cognitive_clusters': self.cluster_by_cognitive_type(analyzed_tasks),
+            'energy_clusters': self.cluster_by_energy_level(analyzed_tasks),
+            'tool_clusters': self.cluster_by_tools(analyzed_tasks),
+            'intent_clusters': self.cluster_by_intent(analyzed_tasks)
+        }
+        
+        # Combine clusters using weighted approach
+        final_clusters = self.merge_cluster_dimensions(clusters, user_preferences)
+        
+        return self.format_clusters(final_clusters)
+    
+    def classify_cognitive_type(self, description):
+        """Classify tasks into cognitive categories"""
+        cognitive_patterns = {
+            'analytical': ['debug', 'analyze', 'review', 'test', 'investigate', 'calculate'],
+            'creative': ['design', 'brainstorm', 'write', 'create', 'ideate', 'draft'],
+            'administrative': ['email', 'schedule', 'update', 'organize', 'file', 'report'],
+            'learning': ['read', 'study', 'research', 'learn', 'explore', 'understand'],
+            'social': ['meeting', 'call', 'discuss', 'collaborate', 'present', 'standup']
+        }
+        
+        # Use pattern matching + LLM for complex cases
+        scores = {}
+        for category, patterns in cognitive_patterns.items():
+            scores[category] = sum(1 for pattern in patterns if pattern in description.lower())
+        
+        if max(scores.values()) == 0:
+            # Use LLM for complex classification
+            return self.llm_classify_cognitive(description)
+        
+        return max(scores, key=scores.get)
+    
+    def predict_energy_need(self, description):
+        """Predict energy requirements using ML"""
+        # Features: word complexity, task verbs, estimated duration
+        features = self.extract_energy_features(description)
+        
+        # Pre-trained model based on user feedback data
+        energy_score = self.energy_model.predict([features])[0]
+        
+        if energy_score > 7: return 'high'
+        elif energy_score > 4: return 'medium'
+        else: return 'low'
+    
+    def extract_tools(self, description, context):
+        """Extract required tools from task description"""
+        tool_patterns = {
+            'vscode': ['code', 'programming', 'debug', 'develop'],
+            'figma': ['design', 'mockup', 'prototype', 'ui'],
+            'browser': ['research', 'web', 'online', 'google'],
+            'slack': ['message', 'chat', 'team communication'],
+            'notion': ['write', 'document', 'notes', 'wiki'],
+            'terminal': ['deploy', 'command', 'script', 'server'],
+            'database': ['sql', 'data', 'query', 'database']
+        }
+        
+        detected_tools = []
+        for tool, patterns in tool_patterns.items():
+            if any(pattern in description.lower() for pattern in patterns):
+                detected_tools.append(tool)
+        
+        # Add context-based tools
+        if context and 'recent_tools' in context:
+            detected_tools.extend(context['recent_tools'][:2])  # Add recent tools
+        
+        return list(set(detected_tools))
 ```
 
-#### **Local LLM for Intent Classification**
+#### **Intent-Based Classification with Ollama**
 ```javascript
-// Using Ollama for local processing
-async function classifyTaskIntent(taskDescription) {
-  const prompt = `
-    Classify this task into one of these categories:
-    - Deep Work: Requires sustained focus, complex thinking
-    - Creative: Brainstorming, design, writing
-    - Administrative: Email, scheduling, routine tasks  
-    - Learning: Reading, research, skill development
-    - Social: Meetings, calls, collaboration
-    
-    Task: "${taskDescription}"
-    
-    Respond with just the category name and confidence (1-10):
-  `;
+// Using Ollama for local intent classification
+class IntentClassifier {
+  constructor() {
+    this.model = 'llama3-8b';
+    this.categories = ['deep_work', 'creative', 'learning', 'administrative', 'social'];
+  }
   
-  const response = await ollama.generate('llama3', prompt);
-  return parseClassification(response);
+  async classifyIntent(taskDescription, userHistory = []) {
+    const prompt = this.buildClassificationPrompt(taskDescription, userHistory);
+    
+    try {
+      const response = await fetch('http://localhost:11434/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: this.model,
+          prompt: prompt,
+          stream: false
+        })
+      });
+      
+      const result = await response.json();
+      return this.parseClassification(result.response);
+    } catch (error) {
+      // Fallback to rule-based classification
+      return this.fallbackClassification(taskDescription);
+    }
+  }
+  
+  buildClassificationPrompt(description, history) {
+    return `
+Task Classification System:
+
+Categories:
+- DEEP_WORK: Complex thinking, programming, analysis, requires 1-4 hours of focus
+- CREATIVE: Design, writing, brainstorming, ideation, artistic work
+- LEARNING: Reading, research, studying, skill development, courses
+- ADMINISTRATIVE: Email, scheduling, reporting, data entry, routine tasks
+- SOCIAL: Meetings, calls, collaboration, presentations, team work
+
+${history.length > 0 ? `
+Previous similar tasks by this user:
+${history.slice(-3).map(h => `"${h.description}" → ${h.intent}`).join('\n')}
+` : ''}
+
+Classify this task: "${description}"
+
+Respond with:
+Intent: [CATEGORY]
+Confidence: [1-10]
+Reasoning: [brief explanation]
+Energy: [high/medium/low]
+Duration: [estimated hours]
+Tools: [likely tools needed]
+`;
+  }
+  
+  parseClassification(response) {
+    const lines = response.split('\n');
+    const result = {};
+    
+    lines.forEach(line => {
+      if (line.startsWith('Intent:')) result.intent = line.split(':')[1].trim();
+      if (line.startsWith('Confidence:')) result.confidence = parseInt(line.split(':')[1]);
+      if (line.startsWith('Energy:')) result.energy = line.split(':')[1].trim();
+      if (line.startsWith('Duration:')) result.duration = line.split(':')[1].trim();
+      if (line.startsWith('Tools:')) result.tools = line.split(':')[1].trim().split(',');
+    });
+    
+    return result;
+  }
 }
 ```
 
